@@ -36,7 +36,9 @@ const forceSsl = (req, res, next) => {
   return next();
 };
 
-app.use(forceSsl);
+if (process.env.NODE_ENV === 'production') {
+  app.use(forceSsl);
+}
 
 // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
 app.engine('html', ngExpressEngine({
