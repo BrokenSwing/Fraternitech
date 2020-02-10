@@ -14,7 +14,7 @@ import { AllosComponent } from './allos/allos.component';
     AllosComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule.withServerTransition({ appId: 'serverApp' })
   ],
   providers: [],
   bootstrap: [AppComponent]
