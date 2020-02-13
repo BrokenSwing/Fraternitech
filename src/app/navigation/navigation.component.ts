@@ -10,8 +10,8 @@ import { FacebookLoginProvider } from 'angularx-social-login';
 })
 export class NavigationComponent implements OnInit {
 
-  private loggedIn = false;
-  private user: SocialUser = null;
+  loggedIn = false;
+  user: SocialUser = null;
 
   constructor(private authService: AuthService) {
     this.authService.authState.subscribe((user) => {
