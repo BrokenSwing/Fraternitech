@@ -23,7 +23,11 @@ import enforce from 'express-sslify';
 
 // Express server
 const app = express();
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
+
+// Middleware
+if (process.env.NODE_ENV === 'production') {
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+}
 
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
