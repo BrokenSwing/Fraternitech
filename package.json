@@ -27,6 +27,7 @@
     "@angular/router": "~8.2.14",
     "@nguniversal/express-engine": "^8.2.6",
     "@nguniversal/module-map-ngfactory-loader": "v8.2.6",
+    "angularx-social-login": "^2.2.1",
     "express": "^4.15.2",
     "express-sslify": "^1.2.0",
     "rxjs": "~6.4.0",

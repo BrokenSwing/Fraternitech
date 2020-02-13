@@ -6,6 +6,16 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
 import { AllosComponent } from './allos/allos.component';
 
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import { FacebookLoginProvider } from 'angularx-social-login';
+
+const config = new AuthServiceConfig([
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('286354825532260')
+  }
+]);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,9 +24,13 @@ import { AllosComponent } from './allos/allos.component';
     AllosComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' })
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    SocialLoginModule,
   ],
-  providers: [],
+  providers: [{
+    provide: AuthServiceConfig,
+    useFactory: () => config,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
