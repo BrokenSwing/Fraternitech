@@ -12,6 +12,8 @@ module.exports = {
   externals: {
     './dist/server/main': 'require("./server/main")',
     'sequelize': 'require("sequelize")',
+    'pg': 'require("pg")',
+    'pg-hstore': 'require("pg-hstore")',
   },
   target: 'node',
   resolve: { extensions: ['.ts', '.js'] },
@@ -47,6 +49,9 @@ module.exports = {
       /(.+)?express(\\|\/)(.+)?/,
       path.join(__dirname, 'src'),
       {}
-    )
+    ),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development'
+    })
   ]
 };
