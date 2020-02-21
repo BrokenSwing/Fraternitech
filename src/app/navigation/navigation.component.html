@@ -14,11 +14,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item" role="menuitem" *ngIf="!this.loggedIn">
-          <a class="nav-link js-scroll-trigger" href="#" (click)="connect()">Se connecter</a>
+        <li class="nav-item" role="menuitem" *ngIf="this.disconnected()">
+          <a class="nav-link" href="#" (click)="connect()">Se connecter</a>
         </li>
-        <li class="nav-item" role="menuitem" *ngIf="this.loggedIn">
-          <a class="nav-link js-scroll-trigger" href="#" (click)="disconnect()">Se déconnecter</a>
+        <li class="nav-item" role="menuitem" *ngIf="this.connecting()">
+          <a class="nav-link text-muted">Connexion ...</a>
+        </li>
+        <li class="nav-item" role="menuitem" *ngIf="this.connected()">
+          <a class="nav-link" href="#" (click)="disconnect()">Se déconnecter</a>
         </li>
         <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#allo">Les allôs</a></li>
         <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#crew">La team</a></li>

@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthService, SocialUser} from 'angularx-social-login';
-import { FacebookLoginProvider } from 'angularx-social-login';
+import {Component, OnInit} from '@angular/core';
+import {AccountService, ConnectionState} from '../services/account/account.service';
 
 
 @Component({
@@ -10,25 +9,29 @@ import { FacebookLoginProvider } from 'angularx-social-login';
 })
 export class NavigationComponent implements OnInit {
 
-  loggedIn = false;
-  user: SocialUser = null;
-
-  constructor(private authService: AuthService) {
-    this.authService.authState.subscribe((user) => {
-        this.user = user;
-        this.loggedIn = user != null;
-    });
-  }
+  constructor(public accountService: AccountService) {}
 
   ngOnInit() {
   }
 
   connect() {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.accountService.connect();
   }
 
   disconnect() {
-    this.authService.signOut(true);
+    this.accountService.disconnect();
+  }
+
+  connected() {
+    return this.accountService.connectionState === ConnectionState.CONNECTED;
+  }
+
+  connecting() {
+    return this.accountService.connectionState === ConnectionState.CONNECTING;
+  }
+
+  disconnected() {
+    return this.accountService.connectionState === ConnectionState.DISCONNECTED;
   }
 
 }
