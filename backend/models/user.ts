@@ -22,6 +22,11 @@ class User extends Model<User> {
   @Column(DataType.BOOLEAN)
   isAdmin: boolean;
 
+  @AllowNull(false)
+  @Default(0)
+  @Column(DataType.INTEGER)
+  score: number;
+
 }
 
 export default User;
