@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ScoresService, Score} from '../../services/scores/scores.service';
 
 @Component({
   selector: 'app-scoreboard',
@@ -7,20 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScoreboardComponent implements OnInit {
 
-  data: { firstname: string, lastname: string, score: number}[];
+  data: Score[];
 
-  constructor() {
+  constructor(private scores: ScoresService) {
     this.data = [];
-    for (let i = 0; i < 15; i++) {
-      this.data.push({
-        firstname: 'Florent',
-        lastname: 'HUGOUVIEUX',
-        score: i * 5
-      });
-    }
   }
 
   ngOnInit() {
+    this.scores.getScoreboard().subscribe((data) => this.data = data);
   }
 
 }

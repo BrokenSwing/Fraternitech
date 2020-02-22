@@ -27,6 +27,11 @@ class User extends Model<User> {
   @Column(DataType.INTEGER)
   score: number;
 
+  @AllowNull(true)
+  @Default(DataType.NOW)
+  @Column(DataType.DATE)
+  lastScoreUpdate: Date;
+
 }
 
 export default User;
