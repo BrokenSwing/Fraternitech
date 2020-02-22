@@ -1,0 +1,34 @@
+<header class="masthead" style="background: url('/assets/img/bg-pattern.png'), linear-gradient(to left, #7b4397, #dc2430);">
+  <div class="container h-100">
+    <div class="row h-100">
+      <div class="col-lg-7 my-auto">
+        <div class="mx-auto header-content">
+          <h1 class="mb-5">Classement</h1>
+          <p>
+            Gagnez des points en participants aux activités ainsi qu'en devinant chaque jour à qui appartiennent
+            les photos publiées sur le site.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-5 my-auto">
+        <div class="device-container">
+          <img class="img-fluid" src="assets/img/trophy-solid.svg">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+<section>
+  <div class="container">
+    <table class="table table-striped scoreboard">
+      <tbody>
+        <tr *ngFor="let d of data">
+          <td>#1</td>
+          <td>Florent HUGOUVIEUX</td>
+          <td>410 points</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

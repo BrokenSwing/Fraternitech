@@ -1,0 +1,50 @@
+.scoreboard tr:first-child, .scoreboard tr:nth-child(2), .scoreboard tr:nth-child(3) {
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+
+.scoreboard tr:first-child {
+  background-color: gold;
+  animation-name: glow-gold;
+}
+
+.scoreboard tr:nth-child(2) {
+  background-color: silver;
+  animation-name: glow-silver;
+  animation-delay: 2s;
+}
+
+.scoreboard tr:nth-child(3) {
+  background-color: #cd7f32;
+  animation-name: glow-bronze;
+  animation-delay: 0.66s;
+}
+
+@keyframes glow-gold {
+  from {
+    box-shadow: 0 0 10px 5px gold;
+  }
+  to {
+    box-shadow: 0 0 0 0 gold;
+  }
+}
+
+@keyframes glow-silver {
+  from {
+    box-shadow: 0 0 10px 5px silver;
+  }
+  to {
+    box-shadow: 0 0 0 0 gold;
+  }
+}
+
+@keyframes glow-bronze {
+  from {
+    box-shadow: 0 0 10px 5px #cd7f32;
+  }
+  to {
+    box-shadow: 0 0 0 0 #cd7f32;
+  }
+}

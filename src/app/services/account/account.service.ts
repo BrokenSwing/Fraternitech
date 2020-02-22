@@ -39,6 +39,11 @@ export class AccountService {
 
   connect() {
     this.connectionState = ConnectionState.CONNECTING;
+    setTimeout(() => {
+      if (this.connectionState === ConnectionState.CONNECTING) {
+        this.connectionState = ConnectionState.DISCONNECTED;
+      }
+    }, 4000);
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
