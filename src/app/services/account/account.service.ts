@@ -10,6 +10,7 @@ import {HttpClient} from '@angular/common/http';
 export class AccountService {
 
   private user: SocialUser;
+  private decodedToken: UserInfo = null;
   private token = '';
   connectionState: ConnectionState;
 
@@ -26,7 +27,10 @@ export class AccountService {
         }).subscribe((res) => {
           if (res.ok) {
             this.token = (res.body as any).token;
+            const tokenContent = this.token.substring(this.token.indexOf('.') + 1, this.token.lastIndexOf('.'));
+            this.decodedToken = JSON.parse(atob(tokenContent)) as UserInfo;
             this.connectionState = ConnectionState.CONNECTED;
+            console.log(this.decodedToken);
           }
         }, (error) => {
           this.connectionState = ConnectionState.DISCONNECTED;
@@ -35,6 +39,10 @@ export class AccountService {
         this.connectionState = ConnectionState.DISCONNECTED;
       }
     });
+  }
+
+  isAdmin() {
+    return this.decodedToken != null && this.decodedToken.admin;
   }
 
   connect() {
@@ -58,4 +66,11 @@ export enum ConnectionState {
   CONNECTED,
   CONNECTING,
   DISCONNECTED
+}
+
+export class UserInfo {
+  userId: string;
+  firstName: string;
+  lastName: string;
+  admin: boolean;
 }

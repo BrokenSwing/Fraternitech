@@ -9,6 +9,7 @@ function queryToken(user: User) {
     userId: user.userId,
     firstName: user.firstname,
     lastName: user.lastname,
+    admin: user.isAdmin,
   }, TOKEN_SECRET_KEY, {
     algorithm: TOKEN_ALG,
     expiresIn: '2d'
