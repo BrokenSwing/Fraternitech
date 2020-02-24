@@ -1,0 +1,42 @@
+<header class="masthead" style="background: url('/assets/img/bg-pattern.png'), linear-gradient(to left, #7b4397, #dc2430);">
+  <div class="container h-100">
+    <div class="row h-100">
+      <div class="col-lg-7 my-auto">
+        <div class="mx-auto header-content">
+          <h1 class="mb-5">Les photos de bébés</h1>
+          <p>
+            Gagnez des points en découvrant chaque jour à qui appartiennent les photos d'enfant publiées sur le site.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-5 my-auto">
+        <div class="device-container">
+          <img class="img-fluid" src="assets/img/baby-carriage-solid.svg">
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<section>
+  <div class="container">
+    <h2 class="text-center">Qui est-ce ?</h2>
+    <div *ngFor="let day of this.days">
+      <br>
+      <h4>Jour {{day}}</h4>
+      <div class="card-columns">
+        <div class="card" *ngFor="let img of this.data[day]">
+          <div class="card-header">
+            <select class="custom-select custom-select-sm">
+              <option selected>Choisir</option>
+              <option>Opt 1</option>
+              <option>Opt 2</option>
+              <option>Opt 3</option>
+              <option>Opt 4</option>
+            </select>
+          </div>
+          <img alt="une photo de bébé" class="card-img-top w-100 d-block" src="api/babies/{{img.hash}}.png">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

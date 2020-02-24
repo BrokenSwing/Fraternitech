@@ -12,6 +12,7 @@ import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { FacebookLoginProvider } from 'angularx-social-login';
 import {HomeComponent} from './pages/home/home.component';
 import {ScoreboardComponent} from './pages/scoreboard/scoreboard.component';
+import {BabiesComponent} from './pages/babies/babies.component';
 
 const config = new AuthServiceConfig([
   {
@@ -22,7 +23,8 @@ const config = new AuthServiceConfig([
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'scoreboard', component: ScoreboardComponent}
+  { path: 'scoreboard', component: ScoreboardComponent},
+  { path: 'babies', component: BabiesComponent},
 ];
 
 @NgModule({
@@ -32,13 +34,14 @@ const appRoutes: Routes = [
     FooterComponent,
     AllosComponent,
     HomeComponent,
-    ScoreboardComponent
+    ScoreboardComponent,
+    BabiesComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     SocialLoginModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true }),
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [{
     provide: AuthServiceConfig,
