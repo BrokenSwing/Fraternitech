@@ -15,6 +15,7 @@ function setup(app: Express) {
   router.get('/babies', babyImages.handleGetList);
   router.get('/babies/*.*', babyImages.handleGetOne, express.static(BABIES_DIR, {
     fallthrough: false,
+    maxAge: '0' // TODO: Change to 1y
   }));
 
   app.use('/api', router);

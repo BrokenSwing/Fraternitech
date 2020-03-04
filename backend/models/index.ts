@@ -2,6 +2,7 @@ import {Sequelize} from 'sequelize-typescript';
 import User from './user';
 import BabyImage from './baby-image';
 import BabyAnswer from './baby-answer';
+import {images} from './data';
 
 function initialize() {
 
@@ -26,6 +27,8 @@ function initialize() {
   return sequelize.authenticate()
     .then(() => console.log('Connected to database'))
     .then(() => sequelize.sync({ alter: true }))
+    .then(() => BabyImage.truncate())
+    .then(() => BabyImage.bulkCreate(images) )
     .catch((err) => console.error(err));
 }
 

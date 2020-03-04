@@ -2,8 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 import babyImageService, {FORBIDDEN, NOT_FOUND} from '../services/BabyImageService';
 
 function handleGetOne(req: Request, res: Response, next: NextFunction) {
-  const hash = req.path.substr(req.path.lastIndexOf('/') + 1, req.path.lastIndexOf('.'));
-  babyImageService.canQuery(hash).then(next).catch((err) => {
+  const hash = req.path.substring(req.path.lastIndexOf('/') + 1, req.path.lastIndexOf('.'));
+  babyImageService.canQuery(hash).then(() => next()).catch((err) => {
     if (err === NOT_FOUND) {
       res.sendStatus(404);
     } else if (err === FORBIDDEN) {
@@ -15,7 +15,7 @@ function handleGetOne(req: Request, res: Response, next: NextFunction) {
   });
 }
 
-function handleGetList(req, res) {
+function handleGetList(req: Request, res: Response) {
   babyImageService.getAllQueryableImages().then((result) => {
     res.send(result);
   });
