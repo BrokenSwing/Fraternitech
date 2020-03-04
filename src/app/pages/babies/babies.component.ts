@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BabyService, BabyImage } from '../../services/baby/baby.service';
+import { BabyService, BabyInfo } from '../../services/baby/baby.service';
 
 @Component({
   selector: 'app-babies',
@@ -7,22 +7,15 @@ import { BabyService, BabyImage } from '../../services/baby/baby.service';
 })
 export class BabiesComponent implements OnInit {
 
-  data: {[day: number]: BabyImage[]};
+  data: {[day: number]: BabyInfo[]};
   days: number[];
 
   constructor(private babyService: BabyService) {}
 
   ngOnInit() {
-    this.days = [];
-    this.data = {};
-    this.babyService.getAvailableImages().subscribe((imgs) => {
-      imgs.forEach((img) => {
-          if (this.data[img.dayNumber] === undefined) {
-            this.data[img.dayNumber] = [];
-            this.days.push(img.dayNumber);
-          }
-          this.data[img.dayNumber].push(img);
-      });
+    this.babyService.getBabiesInfo().subscribe(({ days, data }) => {
+      this.days = days.sort();
+      this.data = data;
     });
   }
 

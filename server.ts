@@ -24,7 +24,7 @@ db.initialize().then(() => {
   routes.setup(app);
 
   app.get('*.*|/', express.static(DIST_FOLDER, {
-    maxAge: '1y'
+    maxAge: '0'
   }));
 
   app.listen(PORT, () => {

@@ -400,7 +400,7 @@ export const images: Data[] = [
         ext: 'jpeg'
     },
     {
-        name: 'Thibault Castelle',
+        name: 'Thibaud Castelle',
         hash: '1955f68ceb3058444c595cf18ca2b6bd',
         day: new Date(),
         dayNumber: 1,
