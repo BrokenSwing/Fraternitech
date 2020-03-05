@@ -30,7 +30,6 @@ export class AccountService {
             const tokenContent = this.token.substring(this.token.indexOf('.') + 1, this.token.lastIndexOf('.'));
             this.decodedToken = JSON.parse(atob(tokenContent)) as UserInfo;
             this.connectionState = ConnectionState.CONNECTED;
-            console.log(this.decodedToken);
           }
         }, (error) => {
           this.connectionState = ConnectionState.DISCONNECTED;
@@ -45,6 +44,10 @@ export class AccountService {
     return this.decodedToken != null && this.decodedToken.admin;
   }
 
+  getToken() {
+    return this.token;
+  }
+
   connect() {
     this.connectionState = ConnectionState.CONNECTING;
     setTimeout(() => {
@@ -52,7 +55,7 @@ export class AccountService {
         this.connectionState = ConnectionState.DISCONNECTED;
       }
     }, 4000);
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).catch(() => this.connectionState = ConnectionState.DISCONNECTED);
   }
 
   disconnect() {

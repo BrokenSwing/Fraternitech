@@ -20,6 +20,7 @@ db.initialize().then(() => {
 
   app.set('view engine', 'html');
   app.set('views', DIST_FOLDER);
+  app.use(express.json());
 
   routes.setup(app);
 

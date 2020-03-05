@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import {AccountService} from '../account/account.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BabyService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private accountService: AccountService) {}
 
   getBabiesInfo() {
     return this.http.get<BabiesResponse>('/api/babies').pipe(
@@ -24,6 +25,17 @@ export class BabyService {
         return {days, data, names: info.names};
       })
     );
+  }
+
+  sendAnswer(hash: string, answer: string) {
+    return this.http.post('/api/babies/answers', {
+      hash,
+      answer,
+    }, {
+      headers: {
+        Authorization: `Bearer ${this.accountService.getToken()}`
+      }
+    });
   }
 
 }

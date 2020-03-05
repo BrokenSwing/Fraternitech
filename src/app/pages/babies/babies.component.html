@@ -28,7 +28,11 @@
           <div class="card-header" *ngIf="this.canPick()">
             <form class="form-row">
               <div class="col-10">
-                <select class="custom-select custom-select-sm" *ngIf="!img.name">
+                <select
+                  class="custom-select custom-select-sm"
+                  *ngIf="!img.name" name="answer"
+                  [(ngModel)]="this.pickedAnswers[img.hash]"
+                >
                   <option selected>Choisir</option>
                   <option *ngFor="let name of names" value="{{name}}">{{name}}</option>
                 </select>
@@ -37,7 +41,7 @@
                 </select>
               </div>
               <div class="col-1">
-                <button type="submit" class="btn btn-sm btn-dark" [disabled]="img.name">
+                <button type="submit" class="btn btn-sm btn-dark" [disabled]="img.name" (click)="pick(img.hash)">
                   <i class="fa fa-check"></i>
                 </button>
               </div>

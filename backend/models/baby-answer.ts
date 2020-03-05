@@ -9,17 +9,21 @@ class BabyAnswer extends Model<BabyAnswer> {
 
   @PrimaryKey
   @ForeignKey(() => User)
-  @Column(DataType.TEXT)
+  @Column(DataType.STRING)
   userId: string;
 
   @PrimaryKey
   @ForeignKey(() => BabyImage)
-  @Column(DataType.TEXT)
+  @Column(DataType.STRING)
   hash: string;
 
   @AllowNull(false)
-  @Column(DataType.TEXT)
-  name: string;
+  @Column(DataType.STRING)
+  answer: string;
+
+  @AllowNull(false)
+  @Column(DataType.BOOLEAN)
+  submitted: boolean;
 
 }
 

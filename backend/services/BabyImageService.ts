@@ -5,7 +5,7 @@ import {Op} from 'sequelize';
 export const NOT_FOUND = new Error('Not Found');
 export const FORBIDDEN = new Error('Forbidden');
 
-function canQuery(hash: string): Promise<boolean> {
+function canQuery(hash: string): Promise<BabyImage> {
   return BabyImage.findByPk(hash).then((img) => {
     if (img === null) {
       return Promise.reject(NOT_FOUND);
@@ -14,7 +14,7 @@ function canQuery(hash: string): Promise<boolean> {
     const canShow = moment(img.day).isBefore(moment());
 
     if (canShow) {
-      return Promise.resolve(true);
+      return Promise.resolve(img);
     }
 
     return Promise.reject(FORBIDDEN);
