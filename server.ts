@@ -27,6 +27,8 @@ db.initialize().then(() => {
     maxAge: '0'
   }));
 
+  app.get('*', (req, res) => res.sendFile(join(DIST_FOLDER, 'index.html')));
+
   app.listen(PORT, () => {
     console.log(`Node Express server listening on http://localhost:${PORT}`);
   });
