@@ -1,12 +1,12 @@
 import { BabyImage } from '../models';
 import * as moment from 'moment';
+import {Op} from 'sequelize';
 
 export const NOT_FOUND = new Error('Not Found');
 export const FORBIDDEN = new Error('Forbidden');
 
 function canQuery(hash: string): Promise<boolean> {
   return BabyImage.findByPk(hash).then((img) => {
-    console.log(hash);
     if (img === null) {
       return Promise.reject(NOT_FOUND);
     }
@@ -24,8 +24,26 @@ function canQuery(hash: string): Promise<boolean> {
 
 function getAllQueryableImages() {
   const now = moment.now();
-  return BabyImage.findAll().then((images) => {
-    return images.filter((img) => moment(img.day).isBefore(now)).map((img) => {
+  return Promise.all([
+    BabyImage.findAll({
+      order: ['hash'],
+      where: {
+        day: {
+          [Op.lte]: new Date()
+        }
+      }
+    }),
+    BabyImage.findAll({
+      attributes: ['name'],
+      order: ['name'],
+      where: {
+        day: {
+          [Op.gte]: moment().subtract('1', 'd').toDate()
+        }
+      }
+    })
+  ]).then((data: [BabyImage[], BabyImage[]]) => {
+    const images = data[0].map((img) => {
       const imgDate = moment(img.day);
       if (imgDate.add('1', 'd').isBefore(now)) {
         return {
@@ -44,6 +62,11 @@ function getAllQueryableImages() {
         };
       }
     });
+    const names = data[1].map((img) => img.name);
+    return {
+      names,
+      images,
+    };
   });
 }
 

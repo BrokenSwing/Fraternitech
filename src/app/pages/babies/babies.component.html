@@ -25,14 +25,23 @@
       <h4>Jour {{day}}</h4>
       <div class="card-columns">
         <div class="card" *ngFor="let img of this.data[day]">
-          <div class="card-header">
-            <select class="custom-select custom-select-sm">
-              <option selected>Choisir</option>
-              <option>Opt 1</option>
-              <option>Opt 2</option>
-              <option>Opt 3</option>
-              <option>Opt 4</option>
-            </select>
+          <div class="card-header" *ngIf="this.canPick()">
+            <form class="form-row">
+              <div class="col-10">
+                <select class="custom-select custom-select-sm" *ngIf="!img.name">
+                  <option selected>Choisir</option>
+                  <option *ngFor="let name of names" value="{{name}}">{{name}}</option>
+                </select>
+                <select readonly *ngIf="img.name" class="custom-select custom-select-sm" disabled>
+                  <option selected>{{img.name}}</option>
+                </select>
+              </div>
+              <div class="col-1">
+                <button type="submit" class="btn btn-sm btn-dark" [disabled]="img.name">
+                  <i class="fa fa-check"></i>
+                </button>
+              </div>
+            </form>
           </div>
           <img alt="une photo de bébé" class="card-img-top w-100 d-block" src="api/babies/{{img.hash}}.{{img.ext}}">
         </div>

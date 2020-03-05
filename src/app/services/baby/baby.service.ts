@@ -10,22 +10,27 @@ export class BabyService {
   constructor(private http: HttpClient) {}
 
   getBabiesInfo() {
-    return this.http.get<BabyInfo[]>('/api/babies').pipe(
+    return this.http.get<BabiesResponse>('/api/babies').pipe(
       map((info) => {
         const days: number[] = [];
         const data: {[day: number]: BabyInfo[]} = {};
-        info.forEach((i) => {
+        info.images.forEach((i) => {
           if (!days.includes(i.dayNumber)) {
             days.push(i.dayNumber);
             data[i.dayNumber] = [];
           }
           data[i.dayNumber].push(i);
         });
-        return {days, data};
+        return {days, data, names: info.names};
       })
     );
   }
 
+}
+
+interface BabiesResponse {
+  names: string[];
+  images: BabyInfo[];
 }
 
 export interface BabyInfo {
