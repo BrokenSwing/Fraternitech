@@ -1,13 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BabyInfo, BabyService} from '../../services/baby/baby.service';
 import {AccountService, ConnectionState} from '../../services/account/account.service';
-import {NgForm} from '@angular/forms';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-babies',
   templateUrl: './babies.component.html',
 })
-export class BabiesComponent implements OnInit {
+export class BabiesComponent implements OnInit, OnDestroy {
+
+  private subscription: Subscription;
 
   data: {[day: number]: BabyInfo[]};
   days: number[];
@@ -23,6 +25,13 @@ export class BabiesComponent implements OnInit {
       this.names = names;
       Object.values(this.data).forEach((chunk) => chunk.forEach(info => this.pickedAnswers[info.hash] = 'Choisir'));
     });
+    this.subscription = this.accountService.stateBehavior.subscribe((state) => {
+      if (state === ConnectionState.CONNECTED) {
+        this.babyService.getAnswers().subscribe((data) => {
+          data.forEach(answer => this.pickedAnswers[answer.hash] = answer.choice);
+        });
+      }
+    });
   }
 
   canPick() {
@@ -34,6 +43,10 @@ export class BabiesComponent implements OnInit {
     this.babyService.sendAnswer(hash, picked).subscribe(() => {
       console.log('It is ok, it is sent');
     }, () => console.log('It is not ok at all'));
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

@@ -10,4 +10,12 @@ function submitAnswerFor(img: BabyImage, answer: string, userId: string) {
   });
 }
 
-export default {submitAnswerFor};
+function listForUser(userId: string) {
+  return BabyAnswer.findAll({
+    where: {
+      userId,
+    }
+  });
+}
+
+export default {submitAnswerFor, listForUser};

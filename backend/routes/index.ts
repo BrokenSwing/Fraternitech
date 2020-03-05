@@ -19,6 +19,7 @@ function setup(app: Express) {
     fallthrough: false,
     maxAge: '0' // TODO: Change to 1y
   }));
+  router.get('/babies/answers', auth.ensureConnected(), userAnswers.listChoices);
   router.post('/babies/answers', auth.ensureConnected(), userAnswers.submitAnswer);
 
   app.use('/api', router);

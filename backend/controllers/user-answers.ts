@@ -37,4 +37,14 @@ function submitAnswer(req: Request, res: Response) {
 
 }
 
-export default { submitAnswer };
+function listChoices(req: Request, res: Response) {
+  userAnswersService.listForUser(((req as any).user as User).userId).then((answers) => {
+    const mapped = answers.map((answer) => ({
+      hash: answer.hash,
+      choice: answer.answer,
+    }));
+    res.send(mapped);
+  });
+}
+
+export default { submitAnswer, listChoices };

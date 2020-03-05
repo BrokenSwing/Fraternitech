@@ -38,6 +38,14 @@ export class BabyService {
     });
   }
 
+  getAnswers() {
+    return this.http.get<{hash: string, choice: string}[]>('/api/babies/answers', {
+      headers: {
+        Authorization: `Bearer ${this.accountService.getToken()}`,
+      }
+    });
+  }
+
 }
 
 interface BabiesResponse {
