@@ -1,4 +1,4 @@
-import {Table, Column, Model, DataType, AllowNull, ForeignKey, PrimaryKey} from 'sequelize-typescript';
+import {Table, Column, Model, DataType, AllowNull, ForeignKey, PrimaryKey, BelongsTo} from 'sequelize-typescript';
 import User from './user';
 import BabyImage from './baby-image';
 
@@ -24,6 +24,9 @@ class BabyAnswer extends Model<BabyAnswer> {
   @AllowNull(false)
   @Column(DataType.BOOLEAN)
   submitted: boolean;
+
+  @BelongsTo(() => BabyImage)
+  image: BabyImage;
 
 }
 

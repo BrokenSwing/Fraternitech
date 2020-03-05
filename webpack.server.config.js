@@ -14,6 +14,7 @@ module.exports = {
     'sequelize': 'require("sequelize")',
     'pg': 'require("pg")',
     'pg-hstore': 'require("pg-hstore")',
+    'tz-offset': 'require("tz-offset")',
   },
   target: 'node',
   resolve: { extensions: ['.ts', '.js'] },

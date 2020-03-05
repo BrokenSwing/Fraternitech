@@ -5,8 +5,11 @@ import {join} from 'path';
 import enforce from 'express-sslify';
 import db from './backend/models';
 import routes from './backend/routes/';
+import {startCron} from './backend/cron';
 
 db.initialize().then(() => {
+  startCron();
+
   // Express server
   const app = express();
 
