@@ -441,4 +441,18 @@ export const images: Data[] = [
         dayNumber: 1,
         ext: 'png',
     },
+    {
+      name: 'Mickael Ergen',
+      hash: 'bd7fc9d5d609b1415b4bd845eacb3faf',
+      day: new Date(),
+      dayNumber: 1,
+      ext: 'jpg',
+    },
+    {
+      name: 'Loïck Nicolaï',
+      hash: '95add863f1f54fab68825d3a2c781975',
+      day: new Date(),
+      dayNumber: 1,
+      ext: 'png'
+    }
 ];
