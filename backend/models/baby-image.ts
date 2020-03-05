@@ -18,7 +18,7 @@ class BabyImage extends Model<BabyImage> {
   day: Date;
 
   @AllowNull(false)
-  @Column(DataType.NUMBER)
+  @Column(DataType.INTEGER)
   dayNumber: number;
 
   @AllowNull(false)
