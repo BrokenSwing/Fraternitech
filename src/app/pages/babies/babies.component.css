@@ -1,0 +1,20 @@
+.valid-toast {
+  position: fixed;
+  top: 150px;
+  left: 10%;
+  z-index: 10000;
+  animation-duration: 1.5s;
+  animation-delay: 1s;
+  animation-name: fade-out;
+  animation-iteration-count: 1;
+  opacity: 1;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

@@ -6,6 +6,7 @@ import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-babies',
   templateUrl: './babies.component.html',
+  styleUrls: ['./babies.component.css']
 })
 export class BabiesComponent implements OnInit, OnDestroy {
 
@@ -15,6 +16,9 @@ export class BabiesComponent implements OnInit, OnDestroy {
   days: number[];
   names: string[];
   pickedAnswers: {[hash: string]: string} = {};
+
+  toast: {message: string, warn: boolean} = null;
+  private deleteTimeout: NodeJS.Timer = null;
 
   constructor(private babyService: BabyService, private accountService: AccountService) {}
 
@@ -40,9 +44,28 @@ export class BabiesComponent implements OnInit, OnDestroy {
 
   pick(hash: string) {
     const picked = this.pickedAnswers[hash];
-    this.babyService.sendAnswer(hash, picked).subscribe(() => {
-      console.log('It is ok, it is sent');
-    }, () => console.log('It is not ok at all'));
+    this.babyService.sendAnswer(hash, picked).subscribe(
+      () => {
+        if (this.deleteTimeout !== null) {
+          clearTimeout(this.deleteTimeout);
+        }
+        this.toast = { message: 'Enregistré !', warn: false };
+        this.deleteTimeout = setTimeout(() => {
+          this.toast = null;
+          this.deleteTimeout = null;
+        }, 1500);
+      },
+      () => {
+        if (this.deleteTimeout !== null) {
+          clearTimeout(this.deleteTimeout);
+        }
+        this.toast = { message: 'Impossible d\'enregister', warn: true };
+        this.deleteTimeout = setTimeout(() => {
+          this.toast = null;
+          this.deleteTimeout = null;
+        }, 1500);
+      }
+    );
   }
 
   ngOnDestroy(): void {
