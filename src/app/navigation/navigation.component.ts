@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService, ConnectionState} from '../services/account/account.service';
+import * as moment from 'moment';
+import {isBabiesTime} from '../timings';
 
 
 @Component({
@@ -32,6 +34,10 @@ export class NavigationComponent implements OnInit {
 
   disconnected() {
     return this.accountService.connectionState === ConnectionState.DISCONNECTED;
+  }
+
+  shouldShowBabiesLink() {
+    return isBabiesTime();
   }
 
 }

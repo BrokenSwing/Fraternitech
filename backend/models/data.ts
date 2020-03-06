@@ -8,7 +8,7 @@ interface Data {
     ext: string;
 }
 
-const BEGINNING_DATE = moment('10:00:00 09/03/2020', undefined, 'fr');
+const BEGINNING_DATE = moment('10:00:00 09/03/2020', 'h:mm:ss DD:MM:YYYY', 'fr');
 
 export let images: Data[] = [
     {
@@ -464,6 +464,6 @@ images = images
   .sort((img1, img2) => img1.hash.localeCompare(img2.hash))
   .map((img, i) => {
     img.dayNumber = Math.floor(i / 6) + 1;
-    img.day = moment(BEGINNING_DATE).add((img.dayNumber - 1) * 2, 'm').toDate();
+    img.day = moment(BEGINNING_DATE).add(img.dayNumber - 1, 'd').toDate();
     return img;
   });
