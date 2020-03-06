@@ -1,6 +1,7 @@
 import { BabyImage } from '../models';
 import * as moment from 'moment';
 import {Op} from 'sequelize';
+import {TIME_TO_RESPOND, UNIT} from '../timings';
 
 export const NOT_FOUND = new Error('Not Found');
 export const FORBIDDEN = new Error('Forbidden');
@@ -38,14 +39,14 @@ function getAllQueryableImages() {
       order: ['name'],
       where: {
         day: {
-          [Op.gte]: moment().subtract('1', 'd').toDate()
+          [Op.gte]: moment().subtract(TIME_TO_RESPOND, UNIT).toDate()
         }
       }
     })
   ]).then((data: [BabyImage[], BabyImage[]]) => {
     const images = data[0].map((img) => {
       const imgDate = moment(img.day);
-      if (imgDate.add('1', 'd').isBefore(now)) {
+      if (imgDate.add(TIME_TO_RESPOND, UNIT).isBefore(now)) {
         return {
           day: imgDate.unix(),
           hash: img.hash,

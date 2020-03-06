@@ -54,7 +54,10 @@
                 </select>
               </div>
               <div class="col-1">
-                <button type="submit" class="btn btn-sm btn-dark" [disabled]="img.name" (click)="pick(img.hash)">
+                <button type="submit" class="btn btn-sm btn-dark"
+                        [disabled]="img.name || this.pickedAnswers[img.hash] === 'Choisir'"
+                        (click)="pick(img.hash)"
+                >
                   <i class="fa fa-check"></i>
                 </button>
               </div>

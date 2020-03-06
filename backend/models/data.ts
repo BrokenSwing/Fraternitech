@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 interface Data {
     name: string;
     hash: string;
@@ -6,7 +8,9 @@ interface Data {
     ext: string;
 }
 
-export const images: Data[] = [
+const BEGINNING_DATE = moment('10:00:00 09/03/2020', undefined, 'fr');
+
+export let images: Data[] = [
     {
         name: 'Alex Benbouazza',
         hash: '3f202cad6f77f24b756919424ceb0fb8',
@@ -456,3 +460,10 @@ export const images: Data[] = [
       ext: 'png'
     }
 ];
+images = images
+  .sort((img1, img2) => img1.hash.localeCompare(img2.hash))
+  .map((img, i) => {
+    img.dayNumber = Math.floor(i / 6) + 1;
+    img.day = moment(BEGINNING_DATE).add((img.dayNumber - 1) * 2, 'm').toDate();
+    return img;
+  });

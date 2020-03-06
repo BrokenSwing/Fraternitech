@@ -3,6 +3,7 @@ import babiesService, {NOT_FOUND} from '../services/BabyImageService';
 import * as moment from 'moment';
 import userAnswersService from '../services/user-answer-service';
 import {User} from '../models';
+import {TIME_TO_RESPOND, UNIT} from '../timings';
 
 function submitAnswer(req: Request, res: Response) {
   const b = req.body;
@@ -10,7 +11,7 @@ function submitAnswer(req: Request, res: Response) {
   if (b && b.hash && b.answer) {
     babiesService.canQuery(b.hash).then((img) => {
 
-      const imgDateOneDayLater = moment(img.day).add(1, 'd');
+      const imgDateOneDayLater = moment(img.day).add(TIME_TO_RESPOND, UNIT);
 
       if (moment().isBefore(imgDateOneDayLater)) { // It's ok
 

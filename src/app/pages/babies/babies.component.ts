@@ -55,11 +55,15 @@ export class BabiesComponent implements OnInit, OnDestroy {
           this.deleteTimeout = null;
         }, 1500);
       },
-      () => {
+      (e) => {
         if (this.deleteTimeout !== null) {
           clearTimeout(this.deleteTimeout);
         }
-        this.toast = { message: 'Impossible d\'enregister', warn: true };
+        if (e.status === 400) {
+          this.toast = { message: 'Trop tard. Vous ne pouvez plus répondre', warn: true };
+        } else {
+          this.toast = { message: 'Impossible d\'enregister', warn: true };
+        }
         this.deleteTimeout = setTimeout(() => {
           this.toast = null;
           this.deleteTimeout = null;
