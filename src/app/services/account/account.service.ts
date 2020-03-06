@@ -35,6 +35,8 @@ export class AccountService {
             const tokenContent = this.token.substring(this.token.indexOf('.') + 1, this.token.lastIndexOf('.'));
             this.decodedToken = JSON.parse(atob(tokenContent)) as UserInfo;
             this.stateBehavior.next(ConnectionState.CONNECTED);
+          } else {
+            this.stateBehavior.next(ConnectionState.DISCONNECTED);
           }
         }, (error) => {
           this.stateBehavior.next(ConnectionState.DISCONNECTED);
