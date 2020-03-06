@@ -15,6 +15,7 @@ import {ScoreboardComponent} from './pages/scoreboard/scoreboard.component';
 import {BabiesComponent} from './pages/babies/babies.component';
 import {FormsModule} from '@angular/forms';
 import {TimeGuard} from './time.guard';
+import { PolicyComponent } from './pages/policy/policy.component';
 
 const config = new AuthServiceConfig([
   {
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'scoreboard', component: ScoreboardComponent},
   {path: 'babies', component: BabiesComponent, canActivate: [TimeGuard]},
+  {path: 'policy', component: PolicyComponent}
 ];
 
 @NgModule({
@@ -38,6 +40,7 @@ const appRoutes: Routes = [
     HomeComponent,
     ScoreboardComponent,
     BabiesComponent,
+    PolicyComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
