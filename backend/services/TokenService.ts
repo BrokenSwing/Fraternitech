@@ -1,7 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import {User} from '../models';
 
-const TOKEN_SECRET_KEY = 'token_super_secret';
+const TOKEN_SECRET_KEY = process.env.TOKEN_SECRET || 'token_super_secret';
 const TOKEN_ALG = 'HS256';
 
 function queryToken(user: User) {
