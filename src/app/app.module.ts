@@ -17,6 +17,7 @@ import {FormsModule} from '@angular/forms';
 import {TimeGuard} from './time.guard';
 import { PolicyComponent } from './pages/policy/policy.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { TrombinoscopeComponent } from './pages/trombinoscope/trombinoscope.component';
 
 const config = new AuthServiceConfig([
   {
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   {path: 'scoreboard', component: ScoreboardComponent},
   {path: 'babies', component: BabiesComponent, canActivate: [TimeGuard]},
   {path: 'policy', component: PolicyComponent},
+  {path: 'trombinoscope', component: TrombinoscopeComponent},
   {path: '**', component: NotFoundComponent},
 ];
 
@@ -44,6 +46,7 @@ const appRoutes: Routes = [
     BabiesComponent,
     PolicyComponent,
     NotFoundComponent,
+    TrombinoscopeComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),

@@ -1,0 +1,33 @@
+<header class="masthead" style="background: url('/assets/img/bg-pattern.png'), linear-gradient(to left, #7b4397, #dc2430);">
+  <div class="container h-100">
+    <div class="row h-100">
+      <div class="col-lg-7 my-auto">
+        <div class="mx-auto header-content">
+          <h1 class="mb-5">Trombinoscope</h1>
+          <p>
+            Découvrez ici qui compose la merveilleuse Fraternitech <i class="fa fa-heart"></i>
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-5 my-auto">
+        <div class="device-container">
+          <img class="img-fluid" src="assets/img/camera-retro-solid.svg">
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<section>
+  <div class="container">
+    <div *ngFor="let spe of this.specialties">
+      <br>
+      <h4>{{spe}}</h4>
+      <div class="card-columns">
+        <div class="card" *ngFor="let img of this.data[spe]">
+          <div class="card-header">{{img.name}}</div>
+          <img alt="la photo d'un membre de la fraternitech" class="card-img-top w-100 d-block" src="assets/img/pp/{{img.image}}">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
