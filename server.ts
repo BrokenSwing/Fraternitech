@@ -28,7 +28,7 @@ db.initialize().then(() => {
   routes.setup(app);
 
   app.get('*.*|/', express.static(DIST_FOLDER, {
-    maxAge: '0'
+    maxAge: '1y'
   }));
 
   app.get('*', (req, res) => res.sendFile(join(DIST_FOLDER, 'index.html')));

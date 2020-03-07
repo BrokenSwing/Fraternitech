@@ -17,7 +17,7 @@ function setup(app: Express) {
   router.get('/babies', babyImages.handleGetList);
   router.get('/babies/*.*', babyImages.handleGetOne, express.static(BABIES_DIR, {
     fallthrough: false,
-    maxAge: '0' // TODO: Change to 1y
+    maxAge: '1y'
   }));
   router.get('/babies/answers', auth.ensureConnected(), userAnswers.listChoices);
   router.post('/babies/answers', auth.ensureConnected(), userAnswers.submitAnswer);
