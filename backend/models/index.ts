@@ -11,7 +11,7 @@ function initialize() {
   const sequelize = (() => {
     if (process.env.NODE_ENV === 'production') {
       // tslint:disable-next-line:max-line-length
-      return new Sequelize(process.env.DATABASE_URL, {
+      return new Sequelize(process.env.DATABASE_URL || process.env.HEROKU_POSTGRESQL_COPPER_URL, {
         ssl: true,
         models,
       });
