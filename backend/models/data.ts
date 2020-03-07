@@ -425,7 +425,7 @@ export let images: Data[] = [
         ext: 'jpg'
     },
     {
-        name: 'Traquenard',
+        name: 'Benjamin Damance',
         hash: '7d790e2c021ebc9ad2f32fb747e9eb9b',
         day: new Date(),
         dayNumber: 1,
