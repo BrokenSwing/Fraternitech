@@ -29,9 +29,8 @@ function initialize() {
 
   return sequelize.authenticate()
     .then(() => console.log('Connected to database'))
-    .then(() => sequelize.sync({ alter: true }))
-    .then(() => BabyImage.truncate())
-    .then(() => BabyImage.bulkCreate(images) )
+    .then(() => sequelize.sync())
+    .then(() => Promise.all(images.map(img => BabyImage.upsert(img))) )
     .catch((err) => console.error(err));
 }
 
