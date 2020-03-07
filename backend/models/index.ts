@@ -13,7 +13,9 @@ function initialize() {
       // tslint:disable-next-line:max-line-length
       return new Sequelize(process.env.DATABASE_URL || process.env.HEROKU_POSTGRESQL_COPPER_URL, {
         ssl: true,
-        native: true,
+        dialectOptions: {
+          ssl: true,
+        },
         models,
       });
     }
