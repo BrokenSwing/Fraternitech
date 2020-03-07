@@ -16,6 +16,7 @@ import {BabiesComponent} from './pages/babies/babies.component';
 import {FormsModule} from '@angular/forms';
 import {TimeGuard} from './time.guard';
 import { PolicyComponent } from './pages/policy/policy.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const config = new AuthServiceConfig([
   {
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'scoreboard', component: ScoreboardComponent},
   {path: 'babies', component: BabiesComponent, canActivate: [TimeGuard]},
-  {path: 'policy', component: PolicyComponent}
+  {path: 'policy', component: PolicyComponent},
+  {path: '**', component: NotFoundComponent},
 ];
 
 @NgModule({
@@ -41,6 +43,7 @@ const appRoutes: Routes = [
     ScoreboardComponent,
     BabiesComponent,
     PolicyComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
