@@ -205,7 +205,7 @@ export const data: {[spe: string]: { name: string, image: string, spe: string }[
     },
     {
       name: 'Fiona Gimenez',
-      image: 'FioFio.jpeg',
+      image: 'Fiona .JPG',
       spe: 'STE'
     },
     {
