@@ -59,7 +59,7 @@ export const data: {[spe: string]: { name: string, image: string, spe: string }[
     },
     {
       name: 'Lou vivenot',
-      image: 'Lou.PNG',
+      image: 'Lou.jpg',
       spe: 'PEIP'
     },
     {
