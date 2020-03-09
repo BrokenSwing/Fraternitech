@@ -53,7 +53,7 @@ const appRoutes: Routes = [
     SocialLoginModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes, {enableTracing: true}),
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [{
     provide: AuthServiceConfig,
