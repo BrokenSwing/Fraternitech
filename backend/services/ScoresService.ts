@@ -5,7 +5,7 @@ function getOrderedUsers() {
     where: {
       isAdmin: false,
     },
-    order: [ 'score', 'lastScoreUpdate', 'firstname', 'lastname' ],
+    order: [ ['score', 'DESC'], 'lastScoreUpdate', 'firstname', 'lastname' ],
   });
 }
 
