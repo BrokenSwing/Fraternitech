@@ -8,7 +8,7 @@ interface Data {
     ext: string;
 }
 
-const BEGINNING_DATE = moment('10:00:00 09/03/2020', 'h:mm:ss DD:MM:YYYY', 'fr');
+const BEGINNING_DATE = moment('9:00:00 09/03/2020', 'h:mm:ss DD:MM:YYYY', 'fr');
 
 export let images: Data[] = [
     {
