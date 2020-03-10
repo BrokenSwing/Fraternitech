@@ -1,16 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Score, ScoresService} from '../../services/scores/scores.service';
 import {AccountService, ConnectionState} from '../../services/account/account.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-scoreboard',
   templateUrl: './scoreboard.component.html',
   styleUrls: ['./scoreboard.component.css']
 })
-export class ScoreboardComponent implements OnInit {
+export class ScoreboardComponent implements OnInit, OnDestroy {
 
   data: Score[];
   ownScore?: Score = null;
+
+  private subscription: Subscription;
 
   constructor(private scores: ScoresService, private accountService: AccountService) {
     this.data = [];
@@ -19,7 +22,7 @@ export class ScoreboardComponent implements OnInit {
   ngOnInit() {
     this.scores.getScoreboard().subscribe((data) => {
       this.data = data;
-      this.accountService.stateBehavior.subscribe((state) => {
+      this.subscription = this.accountService.stateBehavior.subscribe((state) => {
         if (state === ConnectionState.CONNECTED) {
           const name = `${this.accountService.getUserInfo().firstName} ${this.accountService.getUserInfo().lastName}`;
           const filteredData = this.data.filter(d => d.name === name);
@@ -29,6 +32,10 @@ export class ScoreboardComponent implements OnInit {
         }
       });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }
