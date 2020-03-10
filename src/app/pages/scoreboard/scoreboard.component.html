@@ -20,7 +20,20 @@
   </div>
 </header>
 <section>
+  <div class="container" *ngIf="ownScore">
+    <h3>Votre score</h3>
+    <table class="table table-striped">
+      <tbody>
+      <tr>
+        <td>#{{ownScore.rank}}</td>
+        <td>{{ownScore.name}}</td>
+        <td>{{ownScore.score}} points</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="container">
+    <h3>Classement général</h3>
     <table class="table table-striped scoreboard" *ngIf="data.length > 0">
       <tbody>
         <tr *ngFor="let d of data">

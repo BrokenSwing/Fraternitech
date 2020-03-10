@@ -51,6 +51,10 @@ export class AccountService {
     return this.decodedToken != null && this.decodedToken.admin;
   }
 
+  getUserInfo() {
+    return this.decodedToken;
+  }
+
   getToken() {
     return this.token;
   }
