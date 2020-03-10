@@ -19,11 +19,15 @@ export class ScoreboardComponent implements OnInit {
   ngOnInit() {
     this.scores.getScoreboard().subscribe((data) => {
       this.data = data;
-      if (this.accountService.connectionState === ConnectionState.CONNECTED) {
-        const name = `${this.accountService.getUserInfo().firstName} ${this.accountService.getUserInfo().lastName}`;
-        const filteredData = this.data.filter(d => d.name === name);
-        this.ownScore = filteredData.length ? filteredData[0] : null;
-      }
+      this.accountService.stateBehavior.subscribe((state) => {
+        if (state === ConnectionState.CONNECTED) {
+          const name = `${this.accountService.getUserInfo().firstName} ${this.accountService.getUserInfo().lastName}`;
+          const filteredData = this.data.filter(d => d.name === name);
+          this.ownScore = filteredData.length ? filteredData[0] : null;
+        } else {
+          this.ownScore = null;
+        }
+      });
     });
   }
 
