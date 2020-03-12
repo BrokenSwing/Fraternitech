@@ -350,7 +350,7 @@ export const teams: {name: string, url: string}[] = [{
   name: 'Team Cristina Cordula',
   url: 'goodies.jpg',
 }, {
-  name: 'Team partenariats',
+  name: 'Team partenaire particulier',
   url: 'partenariat.jpg'
 }, {
   name: 'La team de l’ambiance',
