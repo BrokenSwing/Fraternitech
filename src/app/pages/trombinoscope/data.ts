@@ -342,3 +342,32 @@ export const data: {[spe: string]: { name: string, image: string, spe: string }[
     }
   ]
 };
+
+export const teams: {name: string, url: string}[] = [{
+  name: 'Team Coronactivité',
+  url: 'activite.jpg',
+}, {
+  name: 'Team Cristina Cordula',
+  url: 'goodies.jpg',
+}, {
+  name: 'Team partenariats',
+  url: 'partenariat.jpg'
+}, {
+  name: 'La team de l’ambiance',
+  url: 'soiree.jpg'
+}, {
+  name: 'Team Philippe Etchebest',
+  url: 'bouffe.jpg',
+}, {
+  name: 'Team Kamel Ouali',
+  url: 'chore.jpg'
+}, {
+  name: 'Team commérages',
+  url: 'com.jpg',
+}, {
+  name: 'Team Valérie Damidot',
+  url: 'deco.jpg',
+}, {
+  name: 'Team NodeJS',
+  url: 'web.jpg'
+}];

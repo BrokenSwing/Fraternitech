@@ -19,13 +19,28 @@
 </header>
 <section>
   <div class="container">
-    <div *ngFor="let spe of this.specialties">
-      <br>
-      <h4>{{spe}}</h4>
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-dark" (click)="this.showSections()">Par section</button>&nbsp;
+      <button class="btn btn-dark" (click)="this.showTeams()">Par team</button>
+    </div>
+    <div *ngIf="!this.displayTeams">
+      <div *ngFor="let spe of this.specialties">
+        <br>
+        <h4>{{spe}}</h4>
+        <div class="card-columns">
+          <div class="card" *ngFor="let img of this.data[spe]">
+            <div class="card-header">{{img.name}}</div>
+            <img alt="la photo d'un membre de la fraternitech" class="card-img-top w-100 d-block" src="assets/img/pp/{{img.image}}">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="this.displayTeams">
+      <h4>Teams</h4>
       <div class="card-columns">
-        <div class="card" *ngFor="let img of this.data[spe]">
-          <div class="card-header">{{img.name}}</div>
-          <img alt="la photo d'un membre de la fraternitech" class="card-img-top w-100 d-block" src="assets/img/pp/{{img.image}}">
+        <div class="card" *ngFor="let team of this.teams">
+          <div class="card-header">{{team.name}}</div>
+          <img alt="la photo d'une team de la fraternitech" class="card-img-top w-100 d-block" src="assets/img/teams/{{team.url}}">
         </div>
       </div>
     </div>

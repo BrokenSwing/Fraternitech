@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {data} from './data';
+import {data, teams} from './data';
 
 @Component({
   selector: 'app-trombinoscope',
@@ -8,6 +8,8 @@ import {data} from './data';
 export class TrombinoscopeComponent implements OnInit {
 
   data = data;
+  teams = teams;
+  displayTeams = false;
   specialties: string[];
 
   constructor() {
@@ -15,6 +17,14 @@ export class TrombinoscopeComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  showTeams() {
+    this.displayTeams = true;
+  }
+
+  showSections() {
+    this.displayTeams = false;
   }
 
 }
