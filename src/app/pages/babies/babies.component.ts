@@ -16,6 +16,7 @@ export class BabiesComponent implements OnInit, OnDestroy {
   days: number[];
   names: string[];
   pickedAnswers: {[hash: string]: string} = {};
+  shown: boolean[] = [];
 
   toast: {message: string, warn: boolean} = null;
   private deleteTimeout: NodeJS.Timer = null;
@@ -27,6 +28,7 @@ export class BabiesComponent implements OnInit, OnDestroy {
       this.days = days.sort();
       this.data = data;
       this.names = names;
+      this.shown = this.days.map(() => false);
       Object.values(this.data).forEach((chunk) => chunk.forEach(info => this.pickedAnswers[info.hash] = 'Choisir'));
     });
     this.subscription = this.accountService.stateBehavior.subscribe((state) => {
@@ -70,6 +72,10 @@ export class BabiesComponent implements OnInit, OnDestroy {
         }, 1500);
       }
     );
+  }
+
+  switchDisplayState(day: number) {
+    this.shown[day - 1] = !this.shown[day - 1];
   }
 
   ngOnDestroy(): void {

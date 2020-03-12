@@ -35,10 +35,14 @@
     <h2 class="text-center">Qui est-ce ?</h2>
     <div *ngFor="let day of this.days">
       <br>
-      <h4>Jour {{day}}</h4>
-      <div class="card-columns">
+      <h4>Jour {{day}}
+        <button class="btn btn-sm btn-dark" (click)="this.switchDisplayState(day)">
+          {{this.shown[day - 1] ? 'Cacher' : 'Afficher'}}
+        </button>
+      </h4>
+      <div class="card-columns" *ngIf="this.shown[day - 1]">
         <div class="card" *ngFor="let img of this.data[day]">
-          <div class="card-header" *ngIf="this.canPick()">
+          <div class="card-header" *ngIf="this.canPick() || img.name">
             <form class="form-row">
               <div class="col-10">
                 <select
@@ -57,6 +61,7 @@
                 <button type="submit" class="btn btn-sm btn-dark"
                         [disabled]="img.name || this.pickedAnswers[img.hash] === 'Choisir'"
                         (click)="pick(img.hash)"
+                        *ngIf="canPick()"
                 >
                   <i class="fa fa-check"></i>
                 </button>
