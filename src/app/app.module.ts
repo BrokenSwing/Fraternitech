@@ -18,6 +18,7 @@ import {TimeGuard} from './time.guard';
 import { PolicyComponent } from './pages/policy/policy.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TrombinoscopeComponent } from './pages/trombinoscope/trombinoscope.component';
+import { EatComponent } from './pages/eat/eat.component';
 
 const config = new AuthServiceConfig([
   {
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
   {path: 'babies', component: BabiesComponent, canActivate: [TimeGuard]},
   {path: 'policy', component: PolicyComponent},
   {path: 'trombinoscope', component: TrombinoscopeComponent},
+  {path: 'eat', component: EatComponent},
   {path: '**', component: NotFoundComponent},
 ];
 
@@ -47,6 +49,7 @@ const appRoutes: Routes = [
     PolicyComponent,
     NotFoundComponent,
     TrombinoscopeComponent,
+    EatComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
