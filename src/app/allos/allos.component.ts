@@ -68,7 +68,8 @@ export class AllosComponent implements OnInit {
     description: '... Oo'
   }, {
     name: 'Allô ptit dej',
-    description: 'On t\'apporte le petit déjeuner directement chez toi'
+    description: 'On t\'apporte le petit déjeuner directement chez toi',
+    note: 'Seulement le week-end de 8h à 11h'
   }, {
     name: 'Allô popcorn',
     description: 'Qu\'il soit salé ou sucré, on a mit tout l\'air de nos poumons pour le souffler ce maïs'
