@@ -66,4 +66,17 @@ export class RandomComponent implements OnInit {
     return a;
   }
 
+  winChances(weight: number) {
+    if (weight === 0) {
+      return 0;
+    }
+    const totalWeight = this.participants.reduce((left: number, right) => {
+      return left + right.weight;
+    }, 0);
+    if (totalWeight === 0) {
+      return 0;
+    }
+    return weight / totalWeight;
+  }
+
 }

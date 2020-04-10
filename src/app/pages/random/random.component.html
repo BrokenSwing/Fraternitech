@@ -76,6 +76,7 @@
         <th>Classement</th>
         <th>Nom</th>
         <th>Nombre de tickets</th>
+        <th>Chances de victoire</th>
       </tr>
       </thead>
       <tbody>
@@ -93,6 +94,11 @@
             >
           </form>
         </td>
+        <td>{{
+          winChances(participant.weight).toLocaleString('fr-FR', {
+          style: 'percent',
+          maximumFractionDigits: 3
+        })}}</td>
       </tr>
       </tbody>
     </table>
