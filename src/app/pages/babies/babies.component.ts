@@ -25,7 +25,9 @@ export class BabiesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.babyService.getBabiesInfo().subscribe(({ days, data, names }) => {
-      this.days = days.sort();
+      this.days = days.sort((day1, day2) => {
+        return day1 - day2;
+      });
       this.data = data;
       this.names = names;
       this.shown = this.days.map(() => false);
