@@ -9,6 +9,7 @@ interface Data {
 }
 
 const BEGINNING_DATE = moment('9:00:00 09/03/2020', 'h:mm:ss DD:MM:YYYY', 'fr');
+const NEXT_BEGINNING_DATE = moment('9:00:00 20/04/2020', 'h:mm:ss DD:MM:YYYY', 'fr');
 
 export let images: Data[] = [
     {
@@ -464,6 +465,10 @@ images = images
   .sort((img1, img2) => img1.hash.localeCompare(img2.hash))
   .map((img, i) => {
     img.dayNumber = Math.floor(i / 6) + 1;
-    img.day = moment(BEGINNING_DATE).add(img.dayNumber - 1, 'd').toDate();
+    if (img.dayNumber > 7) {
+      img.day = moment(NEXT_BEGINNING_DATE).add(img.dayNumber - 1 - 7, 'd').toDate();
+    } else {
+      img.day = moment(BEGINNING_DATE).add(img.dayNumber - 1, 'd').toDate();
+    }
     return img;
   });
