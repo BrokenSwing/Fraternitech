@@ -1,0 +1,100 @@
+<header class="masthead" style="background: url('/assets/img/bg-pattern.png'), linear-gradient(to left, #7b4397, #dc2430);">
+  <div class="container h-100">
+    <div class="row h-100">
+      <div class="col-lg-7 my-auto">
+        <div class="mx-auto header-content">
+          <h1 class="mb-5">Tirage au sort</h1>
+        </div>
+      </div>
+      <div class="col-lg-5 my-auto">
+        Tirez ici au sort, des étudiants
+      </div>
+    </div>
+  </div>
+</header>
+<section>
+  <div class="container">
+    <h3>Configuration du tirage</h3>
+    <form>
+      <div class="form-group">
+        <label for="winnersCount">Nombre de gagnants</label>
+        <input class="form-control"
+               type="number"
+               name="winnersCount"
+               id="winnersCount"
+               min="1"
+               [(ngModel)]="drawOptions.count"
+        >
+      </div>
+      <div class="form-check">
+        <input class="form-check-input"
+               type="checkbox"
+               name="remise"
+               id="remise"
+               [(ngModel)]="drawOptions.reset"
+        >
+        <label class="form-check-label" for="remise">
+          Avec remise
+        </label>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary" (click)="drawWinners()" [disabled]="drawing">Effectuer le tirage</button>
+    </form>
+    <br>
+  </div>
+  <div class="container" *ngIf="this.winners.length">
+    <h3>Gagnants</h3>
+    <table class="table">
+      <thead>
+      <tr><th>#</th><th>Nom du gagnant</th></tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let winner of this.winners">
+        <td>{{winner.id}}</td>
+        <td>{{winner.name}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="container">
+    <h3>Participants</h3>
+    <form>
+      <div class="form-group">
+        <label for="searchBar" [hidden]="true">Rechercher</label>
+        <input class="form-control"
+               type="text"
+               id="searchBar"
+               [(ngModel)]="this.search"
+               placeholder="Rechercher"
+               [ngModelOptions]="{standalone: true}"
+        >
+      </div>
+    </form>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Classement</th>
+        <th>Nom</th>
+        <th>Nombre de tickets</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let participant of this.participants" [hidden]="!participant.name.toLowerCase().includes(search.toLowerCase())">
+        <td>{{participant.rank}}</td>
+        <td>{{participant.name}}</td>
+        <td>
+          <form>
+            <input class="form-control"
+                   type="number"
+                   min="0"
+                   [value]="participant.weight"
+                   [(ngModel)]="participant.weight"
+                   [ngModelOptions]="{standalone: true}"
+            >
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

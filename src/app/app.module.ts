@@ -19,6 +19,7 @@ import { PolicyComponent } from './pages/policy/policy.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TrombinoscopeComponent } from './pages/trombinoscope/trombinoscope.component';
 import { EatComponent } from './pages/eat/eat.component';
+import { RandomComponent } from './pages/random/random.component';
 
 const config = new AuthServiceConfig([
   {
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
   {path: 'policy', component: PolicyComponent},
   {path: 'trombinoscope', component: TrombinoscopeComponent},
   {path: 'eat', component: EatComponent},
+  {path: 'random', component: RandomComponent},
   {path: '**', component: NotFoundComponent},
 ];
 
@@ -50,6 +52,7 @@ const appRoutes: Routes = [
     NotFoundComponent,
     TrombinoscopeComponent,
     EatComponent,
+    RandomComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
