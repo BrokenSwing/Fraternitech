@@ -34,7 +34,7 @@ const appRoutes: Routes = [
   {path: 'babies', component: BabiesComponent, canActivate: [TimeGuard]},
   {path: 'policy', component: PolicyComponent},
   {path: 'trombinoscope', component: TrombinoscopeComponent},
-  {path: 'eat', component: EatComponent},
+  // {path: 'eat', component: EatComponent},
   {path: 'random', component: RandomComponent},
   {path: '**', component: NotFoundComponent},
 ];
