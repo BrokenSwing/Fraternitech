@@ -9,7 +9,7 @@ interface Data {
 }
 
 const BEGINNING_DATE = moment('9:00:00 09/03/2020', 'h:mm:ss DD:MM:YYYY', 'fr');
-const NEXT_BEGINNING_DATE = moment('9:00:00 20/04/2020', 'h:mm:ss DD:MM:YYYY', 'fr');
+const NEXT_BEGINNING_DATE = moment('7:24:00 19/04/2020', 'h:mm:ss DD:MM:YYYY', 'fr');
 
 export let images: Data[] = [
     {
@@ -466,7 +466,8 @@ images = images
   .map((img, i) => {
     img.dayNumber = Math.floor(i / 6) + 1;
     if (img.dayNumber > 7) {
-      img.day = moment(NEXT_BEGINNING_DATE).add(img.dayNumber - 1 - 7, 'd').toDate();
+      img.day = moment(NEXT_BEGINNING_DATE).toDate();
+      img.dayNumber = 8;
     } else {
       img.day = moment(BEGINNING_DATE).add(img.dayNumber - 1, 'd').toDate();
     }
