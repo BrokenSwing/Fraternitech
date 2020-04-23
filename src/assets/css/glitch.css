@@ -24,6 +24,22 @@
   animation-iteration-count: infinite;
 }
 
+.glitch_delay_1 {
+  animation-delay: 0.3s;
+}
+
+.glitch_delay_2 {
+  animation-delay: 1s;
+}
+
+.glitch_delay_3 {
+  animation-delay: 0.8s;
+}
+
+.glitch_delay_3 {
+  animation-delay: 1.5s;
+}
+
 @keyframes glitch-anim-text {
   0% {
     transform: translate3d(calc(-1 * var(--gap-horizontal)),0,0) scale3d(-1,-1,1);

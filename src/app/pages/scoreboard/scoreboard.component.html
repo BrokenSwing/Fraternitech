@@ -3,8 +3,8 @@
     <div class="row h-100">
       <div class="col-lg-7 my-auto">
         <div class="mx-auto header-content">
-          <h1 class="mb-5">Classement</h1>
-          <p>
+          <h1 class="mb-5 glitch_text">Classement</h1>
+          <p class="glitch_text">
             Gagnez des points en participant aux activités ainsi qu'en devinant chaque jour à qui appartiennent
             les photos publiées sur le site.
           </p>
@@ -27,7 +27,7 @@
       <tr>
         <td>#{{ownScore.rank}}</td>
         <td>{{ownScore.name}}</td>
-        <td>{{ownScore.score}} points</td>
+        <td class="glitch_text">{{ownScore.score}} points</td>
       </tr>
       </tbody>
     </table>
@@ -37,9 +37,15 @@
     <table class="table table-striped scoreboard" *ngIf="data.length > 0">
       <tbody>
         <tr *ngFor="let d of data">
-          <td>#{{d.rank}}</td>
-          <td>{{d.name}}</td>
-          <td>{{d.score}} points</td>
+          <td>
+            <em [className]="d.glitchClasses[0]">#{{d.rank}}</em>
+          </td>
+          <td [className]="d.glitchClasses[1]">
+            {{d.name}}
+          </td>
+          <td>
+            <em [className]="d.glitchClasses[2]">{{d.score}} points</em>
+          </td>
         </tr>
       </tbody>
     </table>
