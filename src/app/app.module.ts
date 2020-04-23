@@ -6,7 +6,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {NavigationComponent} from './navigation/navigation.component';
 import {FooterComponent} from './footer/footer.component';
-import {AllosComponent} from './allos/allos.component';
 
 import {SocialLoginModule, AuthServiceConfig} from 'angularx-social-login';
 import {FacebookLoginProvider} from 'angularx-social-login';
@@ -18,7 +17,6 @@ import {TimeGuard} from './time.guard';
 import { PolicyComponent } from './pages/policy/policy.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TrombinoscopeComponent } from './pages/trombinoscope/trombinoscope.component';
-import { EatComponent } from './pages/eat/eat.component';
 import { RandomComponent } from './pages/random/random.component';
 
 const config = new AuthServiceConfig([
@@ -34,7 +32,6 @@ const appRoutes: Routes = [
   {path: 'babies', component: BabiesComponent, canActivate: [TimeGuard]},
   {path: 'policy', component: PolicyComponent},
   {path: 'trombinoscope', component: TrombinoscopeComponent},
-  // {path: 'eat', component: EatComponent},
   {path: 'random', component: RandomComponent},
   {path: '**', component: NotFoundComponent},
 ];
@@ -44,14 +41,12 @@ const appRoutes: Routes = [
     AppComponent,
     NavigationComponent,
     FooterComponent,
-    AllosComponent,
     HomeComponent,
     ScoreboardComponent,
     BabiesComponent,
     PolicyComponent,
     NotFoundComponent,
     TrombinoscopeComponent,
-    EatComponent,
     RandomComponent,
   ],
   imports: [
