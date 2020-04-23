@@ -37,6 +37,17 @@
           Avec remise
         </label>
       </div>
+      <div class="form-check">
+        <input class="form-check-input"
+               type="checkbox"
+               name="slowDisplay"
+               id="slowDisplay"
+               [(ngModel)]="drawOptions.slowDisplay"
+        >
+        <label class="form-check-label" for="remise">
+          Slow display
+        </label>
+      </div>
       <br>
       <button type="submit" class="btn btn-primary" (click)="drawWinners()" [disabled]="drawing">Effectuer le tirage</button>
     </form>
@@ -104,3 +115,24 @@
     </table>
   </div>
 </section>
+<div id="winner-display" *ngIf="slowDisplaying">
+  <div class="confetti-wrapper">
+    <div *ngFor="let i of this.confettis" class="confetti-{{i}}"></div>
+  </div>
+  <h1 class="winner-name"><small>#{{displayedWinner + 1}}</small> {{winners[displayedWinner].name}}</h1>
+  <div class="controls">
+    <button class="btn"
+            [disabled]="displayedWinner <= 0"
+            (click)="displayedWinner = displayedWinner - 1"
+    >
+      Précédent
+    </button>
+    <button class="btn" (click)="slowDisplaying = false">Quitter</button>
+    <button class="btn"
+            [disabled]="displayedWinner >= winners.length - 1"
+            (click)="displayedWinner = displayedWinner + 1"
+    >
+      Prochain
+    </button>
+  </div>
+</div>

@@ -3,7 +3,8 @@ import {ScoresService} from '../../services/scores/scores.service';
 
 @Component({
   selector: 'app-random',
-  templateUrl: './random.component.html'
+  templateUrl: './random.component.html',
+  styleUrls: ['./random.component.css', './confetti.component.scss'],
 })
 export class RandomComponent implements OnInit {
 
@@ -12,8 +13,13 @@ export class RandomComponent implements OnInit {
   search = '';
   winners: {id: number, name: string}[] = [];
 
-  drawOptions: { reset: boolean, count: number } = { reset: false, count: 1};
+  drawOptions: { reset: boolean, count: number, slowDisplay: boolean } = { reset: false, count: 1, slowDisplay: true};
   drawing = false;
+
+  slowDisplaying = false;
+  displayedWinner = 0;
+
+  confettis: number[] = [];
 
   constructor(private scoresService: ScoresService) { }
 
@@ -25,6 +31,16 @@ export class RandomComponent implements OnInit {
         weight: this.weightByRank(score.rank),
       }));
     });
+    for (let i = 1; i <= 100; i++) {
+      this.participants.push({
+        rank: i,
+        name: `Participant ${i}`,
+        weight: this.weightByRank(i),
+      });
+    }
+    for (let i = 0; i < 150; i++) {
+      this.confettis.push(i);
+    }
   }
 
   weightByRank(rank: number): number {
@@ -70,6 +86,10 @@ export class RandomComponent implements OnInit {
     }
 
     this.drawing = false;
+    if (this.drawOptions.slowDisplay) {
+      this.displayedWinner = 0;
+      this.slowDisplaying = true;
+    }
   }
 
   shuffle<T>(a: Array<T>) {

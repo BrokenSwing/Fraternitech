@@ -1,0 +1,36 @@
+#winner-display {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+}
+
+#winner-display .winner-name {
+  position: absolute;
+  color: white;
+  width: 100%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 10em;
+  text-align: center;
+  top: 50%;
+}
+
+#winner-display .controls {
+  display: flex;
+  align-content: space-between;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+}

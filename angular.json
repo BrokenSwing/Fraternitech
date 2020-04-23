@@ -143,6 +143,12 @@
           }
         }
       }
-    }},
-  "defaultProject": "fraternitech"
+    }
+  },
+  "defaultProject": "fraternitech",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
