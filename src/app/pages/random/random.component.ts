@@ -22,9 +22,28 @@ export class RandomComponent implements OnInit {
       this.participants = data.map((score) => ({
         rank: score.rank,
         name: score.name,
-        weight: 1,
+        weight: this.weightByRank(score.rank),
       }));
     });
+  }
+
+  weightByRank(rank: number): number {
+    if (rank === 1) {
+      return 6;
+    }
+    if (rank === 2) {
+      return 5;
+    }
+    if (rank === 3) {
+      return 4;
+    }
+    if (rank >= 4 && rank <= 10) {
+      return 3;
+    }
+    if (rank >= 11 && rank <= 30) {
+      return 2;
+    }
+    return 1;
   }
 
   drawWinners() {
