@@ -43,7 +43,9 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
     if (this.timer != null) {
       clearInterval(this.timer);
     }
