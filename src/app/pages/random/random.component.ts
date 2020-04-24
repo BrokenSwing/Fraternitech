@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ScoresService} from '../../services/scores/scores.service';
+import {AccountService} from '../../services/account/account.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-random',
   templateUrl: './random.component.html',
   styleUrls: ['./random.component.css', './confetti.component.scss'],
 })
-export class RandomComponent implements OnInit {
+export class RandomComponent implements OnInit, OnDestroy {
 
   participants: {rank: number, name: string, weight: number}[] = [];
 
@@ -21,9 +23,21 @@ export class RandomComponent implements OnInit {
 
   confettis: number[] = [];
 
-  constructor(private scoresService: ScoresService) { }
+  private subscription: Subscription = null;
+
+  constructor(private scoresService: ScoresService, private accountService: AccountService) { }
 
   ngOnInit() {
+    this.accountService.stateBehavior.subscribe(() => {
+      this.gatherData();
+    });
+    this.gatherData();
+    for (let i = 0; i < 150; i++) {
+      this.confettis.push(i);
+    }
+  }
+
+  gatherData() {
     this.scoresService.getScoreboard().subscribe((data) => {
       this.participants = data.map((score) => ({
         rank: score.rank,
@@ -31,15 +45,11 @@ export class RandomComponent implements OnInit {
         weight: this.weightByRank(score.rank),
       }));
     });
-    for (let i = 1; i <= 100; i++) {
-      this.participants.push({
-        rank: i,
-        name: `Participant ${i}`,
-        weight: this.weightByRank(i),
-      });
-    }
-    for (let i = 0; i < 150; i++) {
-      this.confettis.push(i);
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 
