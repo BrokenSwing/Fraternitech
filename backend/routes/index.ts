@@ -13,7 +13,7 @@ function setup(app: Express) {
   const BABIES_DIR = join(process.cwd(), 'static');
 
   router.get('/account', createAccount.handleGet);
-  router.get('/scoreboard', scoreboard.handleGet);
+  router.get('/scoreboard', auth.ensureConnected(), scoreboard.handleGet);
   router.get('/babies', babyImages.handleGetList);
   router.get('/babies/*.*', babyImages.handleGetOne, express.static(BABIES_DIR, {
     fallthrough: false,

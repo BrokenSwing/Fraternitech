@@ -10,7 +10,11 @@ export class ScoresService {
   constructor(private http: HttpClient, private account: AccountService) { }
 
   getScoreboard() {
-    return this.http.get<Score[]>('/api/scoreboard');
+    return this.http.get<Score[]>('/api/scoreboard', {
+      headers: {
+        Authorization: `Bearer ${this.account.getToken()}`
+      }
+    });
   }
 
 }
