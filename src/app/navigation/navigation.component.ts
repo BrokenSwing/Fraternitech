@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {AccountService, ConnectionState} from '../services/account/account.service';
-import * as moment from 'moment';
-import {isBabiesTime} from '../timings';
 
 
 @Component({
@@ -11,33 +8,9 @@ import {isBabiesTime} from '../timings';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(public accountService: AccountService) {}
+  constructor() {}
 
-  ngOnInit() {
-  }
-
-  connect() {
-    this.accountService.connect();
-  }
-
-  disconnect() {
-    this.accountService.disconnect();
-  }
-
-  connected() {
-    return this.accountService.connectionState === ConnectionState.CONNECTED;
-  }
-
-  connecting() {
-    return this.accountService.connectionState === ConnectionState.CONNECTING;
-  }
-
-  disconnected() {
-    return this.accountService.connectionState === ConnectionState.DISCONNECTED;
-  }
-
-  shouldShowBabiesLink() {
-    return isBabiesTime();
+  ngOnInit(): void {
   }
 
 }

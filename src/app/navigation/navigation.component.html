@@ -20,20 +20,11 @@
         <li class="nav-item" role="menuitem">
           <a class="nav-link glitch_text glitch_delay_3" routerLink="trombinoscope">Trombinoscope</a>
         </li>
-        <li class="nav-item" role="menuitem" *ngIf="shouldShowBabiesLink()">
+        <li class="nav-item" role="menuitem">
           <a class="nav-link" routerLink="babies">Photos de bébés</a>
         </li>
         <li class="nav-item" role="menuitem">
           <a class="nav-link glitch_text glitch_delay_2" routerLink="scoreboard">Classement</a>
-        </li>
-        <li class="nav-item" role="menuitem" *ngIf="this.disconnected()">
-          <a class="nav-link" (click)="connect()">Se connecter</a>
-        </li>
-        <li class="nav-item" role="menuitem" *ngIf="this.connecting()">
-          <a class="nav-link text-muted">Connexion ...</a>
-        </li>
-        <li class="nav-item" role="menuitem" *ngIf="this.connected()">
-          <a class="nav-link" href="#" (click)="disconnect()">Se déconnecter</a>
         </li>
       </ul>
     </div>

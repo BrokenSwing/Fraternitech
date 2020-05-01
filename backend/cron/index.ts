@@ -5,9 +5,9 @@ import {Op} from 'sequelize';
 import User from '../models/user';
 
 export function startCron() {
-  cron.schedule('5 0 16 * * *', cronTask, {
+  /*cron.schedule('5 0 16 * * *', cronTask, {
     timezone: 'Europe/Paris',
-  });
+  });*/
 }
 
 function cronTask() {

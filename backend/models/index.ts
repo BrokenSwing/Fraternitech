@@ -2,11 +2,11 @@ import {Sequelize} from 'sequelize-typescript';
 import User from './user';
 import BabyImage from './baby-image';
 import BabyAnswer from './baby-answer';
-import {images} from './data';
+import {images, users} from './data';
 
 function initialize() {
 
-  const models = [User, BabyImage, BabyAnswer];
+  const models = [User, BabyImage];
 
   const sequelize = (() => {
     if (process.env.NODE_ENV === 'production') {
@@ -31,6 +31,16 @@ function initialize() {
     .then(() => console.log('Connected to database'))
     .then(() => sequelize.sync())
     .then(() => Promise.all(images.map(img => BabyImage.upsert(img))) )
+    .then(() => User.truncate({ cascade: true }))
+    .then(() => {
+        const allUsers = users.map((user, i) => ({
+          ... user,
+          isAdmin: false,
+          lastScoreUpdate: new Date(i),
+          userId: i,
+        }));
+        return User.bulkCreate(allUsers);
+    })
     .catch((err) => console.error(err));
 }
 
